@@ -10,7 +10,7 @@ import (
 var db *sql.DB
 
 func initDB() error {
-	connStr := "user=postgres password=secret dbname=postgres sslmode=disable"
+	connStr := "host=localhost port=5433 user=gobackend_user password=strong_secure_password dbname=verity sslmode=disable"
 	var err error
 	db, err = sql.Open("postgres", connStr)
 	if err != nil {
@@ -19,15 +19,6 @@ func initDB() error {
 	if err = db.Ping(); err != nil {
 		return fmt.Errorf("failed to ping db: %w", err)
 	}
-	return createUsersTable()
+	return nil
 }
 
-func createUsersTable() error {
-	query := `CREATE TABLE IF NOT EXISTS users (
-		id SERIAL PRIMARY KEY,
-		name TEXT NOT NULL,
-		email TEXT NOT NULL UNIQUE
-	)`
-	_, err := db.Exec(query)
-	return err
-}

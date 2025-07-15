@@ -15,8 +15,8 @@ func main() {
 
 	http.HandleFunc("/users", usersHandler)
 	http.HandleFunc("/users/", userHandler)
-	log.Println("Server started at :8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Println("Server started at :8081")
+	log.Fatal(http.ListenAndServe(":8081", nil))
 }
 
 func usersHandler(w http.ResponseWriter, r *http.Request) {
